@@ -128,18 +128,14 @@ Follow `DEMO_GUIDE.md` for a six-minute recording with real user prompts, visibl
 
 Submit the source repository, `SUMMARY.md`, `REFLECTION.md`, and the video link as requested by the instructor. `COVERAGE.md` maps the brief to evidence; `DEFENSE_NOTES.md` explains the design. `VERIFICATION.md` records exactly which checks were executed. No notebook or report PDF is required because Markdown is explicitly permitted.
 
-For publication, create an empty repository named, for example, `C5-Agent-Tools` in GitHub, then from this folder run:
+The published repository is https://github.com/HabibShouman/C5-Agent-Tools. To obtain its current contents:
 
 ```powershell
-git init
-git add .
-git commit -m 'Implement C5 three-tool MCP study toolkit'
-git branch -M main
-git remote add origin https://github.com/HabibShouman/C5-Agent-Tools.git
-git push -u origin main
+git clone https://github.com/HabibShouman/C5-Agent-Tools.git
+cd C5-Agent-Tools
 ```
 
-That URL is an example destination, not a claim that the repository exists. Inspect staged files before committing; keep credentials, virtual environments and private session databases excluded. The GitHub connector available during authoring did not offer repository creation.
+The repository contains both test modules and `.github/workflows/tests.yml`. Keep credentials, virtual environments and private session databases excluded from future commits.
 
 ## API references
 

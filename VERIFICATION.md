@@ -17,7 +17,7 @@
 - The pytest suite was not executed because pytest/MCP/Agents dependencies were unavailable. Its tests are not included in the nine passed checks above.
 - No OpenAI, Gemini or local-model run occurred. No provider credentials were accessed or embedded. Natural-language routing, provider compatibility, inference latency and cost remain unmeasured.
 - No Colab run was performed; the brief does not mandate Colab.
-- No actual screencast or remote code repository was created. The available GitHub connector did not expose a repository-creation operation. The recording guide and example repository URL are not completion evidence.
+- Published the code repository at https://github.com/HabibShouman/C5-Agent-Tools using the signed-in browser and GitHub connector. Both test modules and `.github/workflows/tests.yml` are included. No actual screencast was recorded. The recording guide is not completion evidence.
 
 ## Required completion checks on a connected machine
 
