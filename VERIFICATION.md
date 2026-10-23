@@ -2,28 +2,31 @@
 
 **Author: Habib Shouman | Date: 23 October 2026**
 
-## Executed
+## Executed checks
 
-- Read all three pages of the supplied C5 PDF through extracted text; no separate rubric, lectures or starter files were attached.
-- Read the assigned Hugging Face page, linked full article, official MCP architecture, Fetch README/source and relevant FastMCP/Agents SDK/Gemini documentation.
-- Executed `python check_core.py` in Windows PowerShell with Python 3.10 and Pydantic 2.12.5. All **9 tests passed**, including a four-worker/eight-request concurrency check. This checks the application layer only, using temporary SQLite databases. The declared deployment environment remains Python 3.11+ for current MCP/Agents dependencies.
-- Compiled every Python source file with Python 3.11.15 (`compileall`): no syntax errors. Compilation does not import missing dependencies.
-- Counted 358 whitespace-separated words in the Summary section (references excluded), within 300–400. Confirmed exactly three `@mcp.tool` declarations. Packaging checks validate the ZIP CRC and required file presence.
+- Read the supplied three-page C5 brief and cited materials. No separate rubric, lecture notes or starter files were supplied.
+- Nine standalone application checks passed locally on Windows with Python 3.10/Pydantic 2.12.5. Python 3.11.15 syntax compilation also passed. The summary contains 358 whitespace-separated words, excluding references. The original ZIP passed CRC and file-presence checks.
+- Published all source, documentation, both test modules and the GitHub workflow: https://github.com/HabibShouman/C5-Agent-Tools.
+- GitHub Actions successfully installed current dependencies on Ubuntu 26.04 with CPython 3.11.17. Observed principal versions: FastMCP 4.1.3, OpenAI Agents SDK 0.24.0, MCP 2.3.0, Pydantic 2.14.1, pytest 9.1.1 and pytest-asyncio 1.4.0. See `evidence/installed-versions-ci.txt` and the exact pip-freeze artifact on the run.
+- The initial CI run passed 15 application pytest cases but failed on an obsolete camelCase field access in the integration test. Updated the test to current SDK snake_case fields; no core business-logic change was needed.
+- The corrected run passed **all 16 pytest cases**, including the subprocess/stdio MCP integration test. The nine standalone checks passed in the same run. These overlap in application behavior and must not be interpreted as 25 independent reliability experiments.
+- The integration case confirms server startup, exactly three discovered tools, typed input/output schemas, read-only lookup, all three successful tool calls, unknown-space and validation errors, conflicting/repeated request IDs, and independent database inspection.
 
-## Blocked or not executed
+**Successful run:** https://github.com/HabibShouman/C5-Agent-Tools/actions/runs/39967092453
 
-- Workspace environment setup encountered Windows sandbox restrictions. A Python 3.11.15 interpreter could be invoked, but dependency installation could not complete: access to `pypi.org` failed DNS resolution. An offline cache attempt was also unavailable due to cache access restrictions.
-- No successful FastMCP or OpenAI Agents SDK import, MCP handshake, tool discovery or protocol test run occurred. `tests/test_mcp.py` is supplied for that purpose. API compatibility is documentation-based, not runtime-proven.
-- The pytest suite was not executed because pytest/MCP/Agents dependencies were unavailable. Its tests are not included in the nine passed checks above.
-- No OpenAI, Gemini or local-model run occurred. No provider credentials were accessed or embedded. Natural-language routing, provider compatibility, inference latency and cost remain unmeasured.
-- No Colab run was performed; the brief does not mandate Colab.
-- Published the code repository at https://github.com/HabibShouman/C5-Agent-Tools using the signed-in browser and GitHub connector. Both test modules and `.github/workflows/tests.yml` are included. No actual screencast was recorded. The recording guide is not completion evidence.
+**Tested source commit:** d5fa23bc2ab6890d7db5e9dc6eceef3ee72b02d1. Later documentation/evidence changes do not change the tested executable source. The initial failing run remains visible as evidence of the corrected compatibility defect.
 
-## Required completion checks on a connected machine
+## Remaining limits
 
-1. Install current dependencies on Python 3.11+ and save resolved versions.
-2. Run `python check_core.py` and `python -m pytest -q`. Fix any API/version defects revealed; retain actual output.
-3. Configure an available tool-calling model and run all three live demonstrations plus failures. Record the actual provider/model ID and results.
-4. Independently inspect the saved records, publish the repository, record the 5–7-minute video, and fill in actual submission links.
+- Local dependency installation remains blocked by DNS/network restrictions in the authoring environment. The successful dependency-backed execution was in GitHub Actions on Linux, not Windows or Colab.
+- No live OpenAI, Gemini or local-model request occurred. No provider key was configured in the session. The host and client import successfully, but actual model-selected routing, provider compatibility, model latency and cost remain unmeasured.
+- No actual 5–7-minute screencast was recorded or uploaded. The recording guide is preparation, not video evidence.
+- The fixed teaching catalogue does not represent institutional data, live occupancy or booking availability. Saved sessions are local personal records.
 
-Passing application tests supports the particular tested invariants. It does not verify the MCP integration or establish general model reliability. Do not submit this package as fully verified until the remaining checks and video are complete.
+## Before submission
+
+1. Configure an available tool-calling model and run the three model-selected tool demonstrations plus a failure. Record actual provider/model details.
+2. Inspect the resulting database independently, record and upload the 5–7-minute screencast, and add its real link to `SUBMISSION_LINKS.md`.
+3. Update documentation after the live run without overstating what it establishes.
+
+The deterministic checks establish the tested application and MCP behaviors. They do not establish general model reliability. The submission is incomplete until the live demonstration and recording are supplied.

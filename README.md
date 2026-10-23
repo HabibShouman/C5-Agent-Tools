@@ -6,7 +6,7 @@ A small MCP toolkit for reading a fictional campus space catalogue and saving pe
 
 **Repository:** https://github.com/HabibShouman/C5-Agent-Tools
 
-**Status:** application checks passed; dependency installation, MCP integration and live model routing remain unverified in the authoring environment. GitHub Actions supplies a connected integration-test environment; inspect its actual result. The required 5–7-minute video remains to be completed. See `VERIFICATION.md` before submission.
+**Status:** GitHub Actions successfully installed current dependencies and passed all 16 pytest cases, including real MCP subprocess startup, discovery, schemas, all three tool round trips and failures. The nine standalone application checks also passed. [Verified run](https://github.com/HabibShouman/C5-Agent-Tools/actions/runs/39967092453). Actual model-selected calls and the required 5–7-minute video remain pending. See `VERIFICATION.md` before submission.
 
 ## Assignment requirements
 
@@ -17,7 +17,8 @@ A small MCP toolkit for reading a fictional campus space catalogue and saving pe
 - [x] Provide descriptions, typed arguments/results and predictable failures.
 - [x] Implement a FastMCP server and OpenAI Agents SDK host/client.
 - [x] Supply tests, setup instructions and a two-paragraph reflection.
-- [ ] Run the dependency-backed and live-model checks on a connected machine.
+- [x] Run dependency-backed MCP integration checks in GitHub Actions.
+- [ ] Run actual model-selected tool calls.
 - [x] Publish code and add the real repository URL to `SUBMISSION_LINKS.md`.
 - [ ] Record, upload and link the actual 5–7-minute screencast.
 
@@ -74,7 +75,7 @@ py -3.11 -m venv .venv
 
 If `py -3.11` is unavailable, use the full path to an installed Python 3.11+ interpreter. No activation is needed. On macOS/Linux, use `python3 -m venv .venv` and `.venv/bin/python` for subsequent commands. The same interpreter launches the server.
 
-The brief requests the latest FastMCP and Agents SDK. `--upgrade` resolves the latest mutually compatible published releases at installation time; they could not be resolved here. Save `installed-versions.txt` from the successful run and commit it for repeatability. It can then be used as a lock-style input (`pip install -r installed-versions.txt`) on the same platform/Python. This project does not present an unexecuted dependency list as a verified lockfile. `uv sync` is an alternative using `pyproject.toml`; preserve its generated lockfile if used.
+The brief requests the latest FastMCP and Agents SDK. `--upgrade` resolves the latest mutually compatible published releases at installation time; CI resolved and tested FastMCP 4.1.3 and OpenAI Agents SDK 0.24.0; see the verification record. Save `installed-versions.txt` from the successful run and commit it for repeatability. It can then be used as a lock-style input (`pip install -r installed-versions.txt`) on the same platform/Python. This project does not present an unexecuted dependency list as a verified lockfile. `uv sync` is an alternative using `pyproject.toml`; preserve its generated lockfile if used.
 
 ### Select a model provider
 
@@ -113,10 +114,10 @@ Do not launch `server.py` separately for this mode; the host starts and stops it
 ### Tests and independent evidence
 
 - `check_core.py`: nine unittest checks requiring only Python and Pydantic. Executed locally; covers persistence, boundaries, failure behavior, ordering and concurrent retries.
-- `tests/test_core.py`: pytest checks of application behavior, including invalid inputs and persistence. Supplied, not executed here.
-- `tests/test_mcp.py`: real subprocess/stdio discovery, schemas, all three tool round trips and failure cases using the Agents SDK client. Supplied, not executed here. No model key needed.
+- `tests/test_core.py`: 15 pytest application cases, passed in GitHub Actions.
+- `tests/test_mcp.py`: real subprocess/stdio discovery, schemas, all three tool round trips and failure cases using the Agents SDK client. Passed in GitHub Actions. No model key needed.
 - `inspect_sessions.py --db demo-study.db`: reads SQLite independently of tool outputs. Use after exiting the agent to confirm actual effects.
-- `.github/workflows/tests.yml`: runs both test layers on a push or manually after publication. Workflow execution has not occurred here.
+- `.github/workflows/tests.yml`: runs both test layers on a push or manually. Run 39967092453 passed on Ubuntu with Python 3.11.17. Observed dependency versions are retained in `evidence/installed-versions-ci.txt`; the exact pip-freeze file is also available in the run artifact.
 
 These development cases are not held-out model evaluation. No expected answer is inserted into the agent or sent to the model as an answer key.
 
