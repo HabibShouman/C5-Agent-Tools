@@ -1,0 +1,8 @@
+# C5 explicitly requests latest FastMCP and OpenAI Agents SDK.
+# Resolve once with pip install --upgrade -r requirements.txt, then save pip freeze.
+# These are not a tested lockfile; see VERIFICATION.md.
+fastmcp
+openai-agents
+pydantic>=2,<3
+pytest
+pytest-asyncio

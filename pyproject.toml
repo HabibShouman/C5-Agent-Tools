@@ -1,0 +1,15 @@
+[project]
+name = "habib-shouman-c5"
+version = "1.0.0"
+description = "Exactly three MCP tools for a campus study planner"
+authors = [{name = "Habib Shouman"}]
+requires-python = ">=3.11"
+dependencies = ["fastmcp", "openai-agents"]
+
+[dependency-groups]
+dev = ["pytest", "pytest-asyncio"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]

@@ -1,0 +1,18 @@
+Python: 3.10.0 (tags/v3.10.0:b494f59, Oct  4 2021, 19:00:18) [MSC v.1929 64 bit (AMD64)]
+Command: python check_core.py
+Exit: 0
+
+test_boundary_durations (__main__.CoreChecks) ... ok
+test_concurrent_retries (__main__.CoreChecks) ... ok
+test_conflict_preserves_original (__main__.CoreChecks) ... ok
+test_invalid_inputs_no_write (__main__.CoreChecks) ... ok
+test_orchestration_sequence (__main__.CoreChecks) ... ok
+test_persistence_and_duplicate (__main__.CoreChecks) ... ok
+test_read_only (__main__.CoreChecks) ... ok
+test_storage_error (__main__.CoreChecks) ... ok
+test_unknown_space_stops_before_write (__main__.CoreChecks) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.212s
+
+OK
