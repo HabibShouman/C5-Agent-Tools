@@ -1,6 +1,6 @@
 # C5 — Verification record
 
-**Author: Habib Shouman | Date: 23 October 2026**
+**Author: Habib Shouman | Updated: 31 October 2026**
 
 ## Executed checks
 
@@ -14,19 +14,22 @@
 
 **Successful run:** https://github.com/HabibShouman/C5-Agent-Tools/actions/runs/39967092453
 
-**Tested source commit:** d5fa23bc2ab6890d7db5e9dc6eceef3ee72b02d1. Later documentation/evidence changes do not change the tested executable source. The initial failing run remains visible as evidence of the corrected compatibility defect.
+**Tested source commit:** d5fa23bc2ab6890d7db5e9dc6eceef3ee72b02d1. A subsequent host update added redacted provider-error diagnostics; the live runs below used that update. It did not alter tool business logic. The initial failing run remains visible as evidence of the corrected compatibility defect.
 
 ## Remaining limits
 
-- Local dependency installation remains blocked by DNS/network restrictions in the authoring environment. The successful dependency-backed execution was in GitHub Actions on Linux, not Windows or Colab.
-- No live OpenAI, Gemini or local-model request occurred. No provider key was configured in the session. The host and client import successfully, but actual model-selected routing, provider compatibility, model latency and cost remain unmeasured.
+- The user installed dependencies in Windows and supplied pytest output reporting 16 passed in 6.37 seconds. Separate agent-shell DNS restrictions persisted and must not be confused with the successful user-terminal runs. No Colab run was required or performed.
+- Live Gemini requests succeeded in the user terminal: the model selected each of the three MCP tools, received results, and generated appropriate final responses. The missing-room lookup returned an MCP error that the model reported correctly. See `evidence/live-run.md`. Exact active model ID was not printed in the supplied successful transcript; the preceding setup selected gemini-3.1-flash-lite. Capture MODEL_NAME in the recording to confirm it. Model latency and cost remain unmeasured.
 - No actual 5–7-minute screencast was recorded or uploaded. The recording guide is preparation, not video evidence.
 - The fixed teaching catalogue does not represent institutional data, live occupancy or booking availability. Saved sessions are local personal records.
 
 ## Before submission
 
-1. Configure an available tool-calling model and run the three model-selected tool demonstrations plus a failure. Record actual provider/model details.
-2. Inspect the resulting database independently, record and upload the 5–7-minute screencast, and add its real link to `SUBMISSION_LINKS.md`.
-3. Update documentation after the live run without overstating what it establishes.
+1. Record the working three-tool demonstration and failure within 5–7 minutes, showing the active MODEL_NAME without displaying credentials.
+2. Upload the video and add its real link and confirmed recording model to `SUBMISSION_LINKS.md`.
 
-The deterministic checks establish the tested application and MCP behaviors. They do not establish general model reliability. The submission is incomplete until the live demonstration and recording are supplied.
+The deterministic checks establish the tested application and MCP behaviors. They do not establish general model reliability. The live demonstration is evidenced, but the required video and its accessible link remain missing.
+
+## Live verification evidence, 31 October 2026
+
+The user supplied terminal output for successful Data, Action and Orchestration tool calls and for a predictable unknown-space failure. The agent also independently executed the read-only `inspect_sessions.py` command against the same local database and confirmed both persisted records. These are development demonstrations, not held-out evaluation. Earlier NotFoundError, HTTP 503 and timeout attempts are preserved in the conversation; they were not counted as successes.
