@@ -38,6 +38,25 @@ class VisibleServer(MCPServerStdio):
         return result
 
 
+def provider_error_summary(exc: Exception) -> str:
+    """Show provider status/message without dumping requests, headers or credentials."""
+    status = getattr(exc, "status_code", None)
+    body = getattr(exc, "body", None)
+    message = None
+    if isinstance(body, dict):
+        error = body.get("error", body)
+        if isinstance(error, dict) and isinstance(error.get("message"), str):
+            message = error["message"]
+    parts = [f"HTTP {status}" if status is not None else type(exc).__name__]
+    if message:
+        for name in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "OPENAI_API_KEY", "MODEL_API_KEY"):
+            secret = os.getenv(name)
+            if secret:
+                message = message.replace(secret, "[REDACTED]")
+        parts.append(message[:1500])
+    return ": ".join(parts)
+
+
 def make_server(db_path: str | None = None) -> VisibleServer:
     env = dict(os.environ)
     env["PYTHONIOENCODING"] = "utf-8"
@@ -95,9 +114,9 @@ async def main():
             try:
                 result = await asyncio.wait_for(Runner.run(agent, history, max_turns=6), timeout=120)
             except Exception as exc:
-                # Avoid printing provider exception bodies that might contain sensitive data.
                 print(f"Run failed ({type(exc).__name__}). Check credentials, quota and provider tool support. "
                       "A write may already have committed; reuse the same request_id when retrying.")
+                print("Provider diagnostic:", provider_error_summary(exc))
                 history = []
                 if args.prompt:
                     raise SystemExit(1) from None
