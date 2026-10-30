@@ -6,7 +6,7 @@ A small MCP toolkit for reading a fictional campus space catalogue and saving pe
 
 **Repository:** https://github.com/HabibShouman/C5-Agent-Tools
 
-**Status:** GitHub Actions successfully installed current dependencies and passed all 16 pytest cases, including real MCP subprocess startup, discovery, schemas, all three tool round trips and failures. The nine standalone application checks also passed. [Verified run](https://github.com/HabibShouman/C5-Agent-Tools/actions/runs/39967092453). Actual model-selected calls and the required 5–7-minute video remain pending. See `VERIFICATION.md` before submission.
+**Status:** GitHub Actions successfully installed current dependencies and passed all 16 pytest cases, including real MCP subprocess startup, discovery, schemas, all three tool round trips and failures. The nine standalone application checks also passed. [Verified run](https://github.com/HabibShouman/C5-Agent-Tools/actions/runs/39967092453). Live Gemini-selected calls to all three tools, an unknown-space failure, and independent database inspection succeeded on Windows. The required 5–7-minute video remains pending. See `VERIFICATION.md` before submission.
 
 ## Assignment requirements
 
@@ -18,7 +18,7 @@ A small MCP toolkit for reading a fictional campus space catalogue and saving pe
 - [x] Implement a FastMCP server and OpenAI Agents SDK host/client.
 - [x] Supply tests, setup instructions and a two-paragraph reflection.
 - [x] Run dependency-backed MCP integration checks in GitHub Actions.
-- [ ] Run actual model-selected tool calls.
+- [x] Run actual model-selected tool calls; see `evidence/live-run.md`.
 - [x] Publish code and add the real repository URL to `SUBMISSION_LINKS.md`.
 - [ ] Record, upload and link the actual 5–7-minute screencast.
 
@@ -90,7 +90,7 @@ $env:MODEL_NAME = Read-Host 'Available Gemini tool-calling model ID'
 .\.venv\Scripts\python.exe host.py --db demo-study.db
 ```
 
-This path avoids requiring an OpenAI API key. Provider quotas and account eligibility still apply; no free quota is promised. Gemini compatibility has not been live-tested for this project.
+This path avoids requiring an OpenAI API key. Provider quotas and account eligibility still apply; no free quota is promised. Gemini compatibility was demonstrated by the successful live calls documented in `evidence/live-run.md`; this is limited demonstration evidence, not a general compatibility guarantee.
 
 OpenAI:
 
