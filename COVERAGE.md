@@ -19,9 +19,9 @@ No weighted grading rubric was attached. This table maps the supplied brief; it 
 | Descriptions and typed arguments/outputs | Docstrings, Annotated/Field constraints, Space/SavedSession/Plan models | Input/output schemas checked in passing integration test |
 | Predictable failure for each tool | Unknown space; invalid duration/conflicting ID/storage; lookup-before-write stop | Application and protocol failure checks passed |
 | FastMCP server | `server.py`, stdio entry point | Server subprocess startup passed in CI |
-| OpenAI Agents SDK agent host/client | `host.py`: Agent, Runner, MCPServerStdio | SDK client integration passed; model-selected calls pending |
+| OpenAI Agents SDK agent host/client | `host.py`: Agent, Runner, MCPServerStdio | SDK client integration and all three live model-selected calls passed |
 | Tests or interactive scripts | `check_core.py`, `tests/`, `inspect_sessions.py` | Nine standalone checks and all 16 pytest cases passed in CI |
-| Configuration and setup README | `README.md`, requirements and pyproject | Dependencies installed successfully in GitHub Actions |
+| Configuration and setup README | `README.md`, requirements and pyproject | Dependencies installed in CI and Windows; Windows pytest output reports 16 passed |
 | 5–7-minute video introduces categories and live round trips | `DEMO_GUIDE.md` supplies timeline/prompts | Actual recording missing |
 | Challenges and solutions in demo | Demo timeline: tool boundaries, error handling, retries | Guide supplied; recording pending |
 | Share repository and recording | `SUBMISSION_LINKS.md` | Repository linked; video pending |
